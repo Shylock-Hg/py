@@ -187,5 +187,5 @@ Finally, you can use the model to predict median house values for the prediction
 y = regressor.predict(input_fn = get_input_fn(prediction_set,num_epochs = 1,shuffle = False))
 #.predict func return a iterator of dicts,convert to list and print preictions
 predictions = list(p['predictions'] for p in itertools.slice(y,6))
-print('the predictions is : '.format(predictions))
+print('the predictions is : {}'.format(predictions))
 ```
