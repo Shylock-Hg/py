@@ -1,0 +1,41 @@
+#OVERVIE
+##definition
+CNN:convolution neural network
+##concepts
+1.COVNETS:convolution neural network.It share parameter cross space.</br>
+COVNETS is used to deal images.Usaully,image is formated as tensor:</br>
+**[height,width,channel]**</br>
+Where channel is the base color number of image,such as 3(Three primary colors) or 1(gray image).</br>
+
+2.patch:the once input data slide size.It also is called kernel.</br>
+3.depth:the once input data depth.And depth also mean the numbers of feature of input,so layers in depth is called feature map.
+And most import is **input_size=patch\*depth**.</br>
+4.padding: **VALID** keep conv inner image boundary.**SAME** keep conv output same as input.
+
+##Optimization Strategy
+1.pooling</br>
+2.1*1 conv</br>
+3.Inception</br>
+
+##component
+###convolution
+
+$(f*g)(t)=\int_{-\infty}^\infty(f(\tau)g(x-\tau))d\tau$
+
+</br>
+There is some gif to show 1-D & 2-D convoluation
+
+![](https://zh.wikipedia.org/wiki/File:Convolution_of_box_signal_with_itself2.gif)
+
+![](http://deeplearning.stanford.edu/wiki/index.php/File:Convolution_schematic.gif)
+
+From the these expresssion,we can know that convolution compute the means with weight(convolution core).</br>
+Convolution is used to catch feature from data.</br>
+###pooling
+There are usually two methods to pooling features :Max & Mean.</br>
+There is a gif to show how pooling work:</br>
+![](http://deeplearning.stanford.edu/wiki/index.php/File:Pooling_schematic.gif)</br>
+We can know pooling sclar down feature tensor by Max or Mean.We can reduce feature complexity by pooling to reduce computing.</br>
+###typical model
+**LENET-5**  designed by yan lecun in 98'.</br>
+**ALEX-NET** 
