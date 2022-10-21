@@ -102,7 +102,26 @@ def maybe_extract(filename,force = False):
         print('Dir {} don\'t exists! Extract the file {}'.format(root,filename))
         with tarfile.open(filename) as tf:
             sys.stdout.flush()
-            tf.extractall(data_root)
+            def is_within_directory(directory, target):
+                
+                abs_directory = os.path.abspath(directory)
+                abs_target = os.path.abspath(target)
+            
+                prefix = os.path.commonprefix([abs_directory, abs_target])
+                
+                return prefix == abs_directory
+            
+            def safe_extract(tar, path=".", members=None, *, numeric_owner=False):
+            
+                for member in tar.getmembers():
+                    member_path = os.path.join(path, member.name)
+                    if not is_within_directory(path, member_path):
+                        raise Exception("Attempted Path Traversal in Tar File")
+            
+                tar.extractall(path, members, numeric_owner=numeric_owner) 
+                
+            
+            safe_extract(tf, data_root)
     #does extract completely?
     data_folders = [os.path.join(root,d) for d in os.listdir(root)
             if os.path.isdir(os.path.join(root,d))]
